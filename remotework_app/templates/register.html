@@ -1,0 +1,110 @@
+<!DOCTYPE>
+ <html>
+    <head>
+      <style>
+         
+        .mystyle {
+          width: 100;
+          margin: 30;
+          padding: 600;
+          display: flex;
+          background-color:white;
+          color: black;
+          font-size: 20px;
+          box-sizing: border-box;
+          
+        }
+        .main {
+          background-color: #fff;
+          border-radius: 10px;
+          box-shadow: 0 0 20px
+              rgba(0, 0, 0, 0.4);
+          padding: 10;
+          width: 300;
+        }
+        button[type="submit"] {
+          padding: 15px;
+          border-radius: 10px;
+          border: none;
+          background-color: #4caf50;
+          color: white;
+          cursor: pointer;
+          width: 320;
+          font-size: 16px;
+      }
+      label {
+        color: #555;
+        font-weight: bold;
+      }
+            
+        </style>
+    </head>
+    <body>
+        <section class="mystyle">
+            <div>
+              <div >
+                <h2>Registration Form</h2>
+                <form  method="POST" class="main">
+                  {% csrf_token %}
+                  <label for="empid">Employee Id:</label>
+                  <br>
+                  <input type="text" name="empid"  maxlength="20" required aria-invalid="true" id="id_empid">      
+              </div>
+
+              <div class="main">
+                  <label for="email">Email:</label>
+                  <br>
+                  <input type="email" name="email"  maxlength="254" required aria-invalid="true" id="id_email">
+              </div>
+              <br>
+
+              <div class="main">
+                  <label for="full_name">Full name:</label>
+                  <br>
+                  <input type="text" name="full_name"  maxlength="100" required id="id_full_name">
+              </div>
+              <br>
+              <div class="main">
+                  <label for="id_role">Role:</label>
+                  <br>
+                  <input type="text" name="role"  maxlength="50" required id="id_role">
+              </div>
+              <br>
+              <div class="main">
+                  <label for="id_password">Password:</label>
+                  <br>
+                  <input type="password" name="password" required id="id_password">
+              </div>
+              <br>
+              <div class="main">
+                  <label for="id_confirm_password">Confirm Password:</label>
+                  <br>
+                  <input type="password" name="confirm_password" required id="id_confirm_password">
+              </div>
+              <br>
+                  <button type="submit" >Create an account</button>
+                  <p >Already have an account?
+                    <al>Login here</al>
+                  </p>
+                </form>
+              </div>
+            </div>
+        </section>
+
+    </body>    
+</html> 
+
+<!--<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration</title>
+</head>
+<body>
+    <h1>Registration</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>-->
