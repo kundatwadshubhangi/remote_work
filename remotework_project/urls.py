@@ -18,10 +18,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-from remotework_app.views import register
+from remotework_app.views import register,login,sign_out,auth_receiver
 
 urlpatterns = [
+    
     path('admin/', admin.site.urls),
-    path('register/', register,name='register'),
-   
+    path('register/',register,name='register'),
+    path('login/',login, name='login'),
+    path('sign-out',sign_out, name='sign_out'),
+    path('auth-receiver',auth_receiver, name='auth_receiver'),
 ]
