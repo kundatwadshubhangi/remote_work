@@ -2,12 +2,14 @@ import os
 import email
 from django.forms import PasswordInput
 from django.http import HttpResponse
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from.forms import LoginForm, RegistrationForm
 from django.contrib.auth import authenticate, login
 from django.views.decorators.csrf import csrf_exempt
 from google.oauth2 import id_token
 from google.auth.transport import requests
+from .utils import generate_employee_id
 
 
 
@@ -19,8 +21,9 @@ def register(request):
         if form.is_valid():
             # Hash the password before saving
             user = form.save(commit=False)
-           # user.password = make_password(form.cleaned_data['password']) # type: ignore
+            user.empid = generate_employee_id()
             user.save()
+            messages.success(request, 'You have successfully registered! Please log in to continue.')
             return redirect('login')
     else:
         form = RegistrationForm()
@@ -39,12 +42,6 @@ def login(request):
     else:
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
-
-from django.http import HttpResponse
-from django.shortcuts import render, redirect
-from django.views.decorators.csrf import csrf_exempt
-from google.oauth2 import id_token
-from google.auth.transport import requests
 
 
 
@@ -76,4 +73,3 @@ def auth_receiver(request):
 def sign_out(request):
     del request.session['user_data']
     return redirect('sign_in')
-# Create your views here.
