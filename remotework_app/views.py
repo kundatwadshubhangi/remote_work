@@ -44,11 +44,6 @@ def login(request):
     return render(request, 'login.html', {'form': form})
 
 
-
-def sign_in(request):
-    return render(request, 'login.html')
-
-
 @csrf_exempt
 def auth_receiver(request):
     """
@@ -67,9 +62,9 @@ def auth_receiver(request):
     # You could also authenticate the user here using the details from Google (https://docs.djangoproject.com/en/4.2/topics/auth/default/#how-to-log-a-user-in)
     request.session['user_data'] = user_data
 
-    return redirect('sign_in')
+    return redirect('login')
 
 
 def sign_out(request):
     del request.session['user_data']
-    return redirect('sign_in')
+    return redirect('login')
