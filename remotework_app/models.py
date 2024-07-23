@@ -36,7 +36,7 @@ class User(models.Model):
     )
 
     def __str__(self):
-        return self.username
+        return self.full_name
     
 
 class Task(models.Model):
@@ -68,7 +68,7 @@ class TimeLog(models.Model):
         return None
 
     def _str_(self):
-        return f"TimeLog for task {self.task.task_name} by {self.user.username}"
+        return f"TimeLog for task {self.task.title} by {self.user.full_name}"
 
 
 class Message(models.Model):

@@ -1,7 +1,7 @@
 import os
 import email
 from django.forms import PasswordInput
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from.forms import LoginForm, RegistrationForm
@@ -25,6 +25,9 @@ def register(request):
             user.save()
             messages.success(request, 'You have successfully registered! Please log in to continue.')
             return redirect('login')
+        else:
+            errors = form.errors.as_json()
+            return JsonResponse({'error': errors}, status=400)
     else:
         form = RegistrationForm()
     return render(request, 'register.html', {'form': form})
