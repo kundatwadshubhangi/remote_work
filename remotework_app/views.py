@@ -1,7 +1,7 @@
 import os
 import email
 from django.forms import PasswordInput
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from.forms import LoginForm, RegistrationForm
@@ -25,9 +25,6 @@ def register(request):
             user.save()
             messages.success(request, 'You have successfully registered! Please log in to continue.')
             return redirect('login')
-        else:
-            errors = form.errors.as_json()
-            return JsonResponse({'error': errors}, status=400)
     else:
         form = RegistrationForm()
     return render(request, 'register.html', {'form': form})
@@ -41,7 +38,7 @@ def login(request):
             user = authenticate(email=email, password=PasswordInput)
             if user is not None:
                 login(request, user)
-                return redirect('register.html')  # redirect to home page
+                return redirect('index')  # redirect to home page
     else:
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
@@ -71,3 +68,7 @@ def auth_receiver(request):
 def sign_out(request):
     del request.session['user_data']
     return redirect('login')
+
+
+def Index(request):
+    return render(request, 'index.html')
