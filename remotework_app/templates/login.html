@@ -4,6 +4,7 @@
         
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="https://accounts.google.com/gsi/client" async></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" /> 
         <style>
           body {
               font-family: Arial, sans-serif;
@@ -73,7 +74,12 @@
               </div>
               <div>
                 <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                <input type="password" name="password" id="" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Password" required="id_password">
+                <div class="relative">
+                  <input type="password" name="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Password" required>
+                  <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-900 cursor-pointer" id="password-toggle">
+                    <i class="fas fa-eye-slash" aria-hidden="true" id="password-eye"></i>
+                  </span>
+                </div>
               </div>
               <button type="submit" class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</button>
               <div class="container">
@@ -112,6 +118,22 @@
           </div>
         </div>
       </section>
-        
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          document.getElementById('password-toggle').addEventListener('click', function() {
+            const passwordInput = document.getElementById('password');
+            const passwordEye = document.getElementById('password-eye');
+            if (passwordInput.type === 'password') {
+              passwordInput.type = 'text';
+              passwordEye.classList.remove('fa-eye-slash');
+              passwordEye.classList.add('fa-eye');
+            } else {
+              passwordInput.type = 'password';
+              passwordEye.classList.remove('fa-eye');
+              passwordEye.classList.add('fa-eye-slash');
+            }
+          });
+        });
+      </script>
     </body>
 </html>

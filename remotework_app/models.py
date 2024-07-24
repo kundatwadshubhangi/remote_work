@@ -1,6 +1,6 @@
-
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.hashers import make_password
 
 # Create your models here.
 
@@ -10,12 +10,16 @@ class User(models.Model):
     full_name=models.CharField(max_length=100)
     role=models.CharField(max_length=50)
     join_date = models.DateField(null=True)
-    password = models.CharField(max_length=128, default="some_password")
-    confirm_password = models.CharField(max_length=128,default="some_password")
+    password = models.CharField(max_length=128)
+    confirm_password = models.CharField(max_length=128)
     empid = models.CharField(max_length=8, unique=True)
-    def save(self, *args, **kwargs):
-       # self.password = make_password(self.password)  # type: ignore
-        super().save(*args, **kwargs)
+    
+    def set_password(self, password):
+        self.password = make_password(password)
+
+    def check_password(self, password):
+        from django.contrib.auth.hashers import check_password
+        return check_password(password, self.password)
 
     # Add related_name to avoid clash with auth.User.groups
     groups = models.ManyToManyField(

@@ -1,15 +1,14 @@
 import os
-import email
-from django.forms import PasswordInput
 from django.http import HttpResponse
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from.forms import LoginForm, RegistrationForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login 
 from django.views.decorators.csrf import csrf_exempt
 from google.oauth2 import id_token
 from google.auth.transport import requests
 from .utils import generate_employee_id
+
 
 
 
@@ -29,16 +28,16 @@ def register(request):
         form = RegistrationForm()
     return render(request, 'register.html', {'form': form})
 
-def login(request):
+def Login_view(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
-           # email= form.cleaned_data['email']
-            #password = form.cleaned_data['password']
-            user = authenticate(email=email, password=PasswordInput)
+            email= form.cleaned_data['email']
+            password = form.cleaned_data['password']
+            user = authenticate(email=email, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('index')  # redirect to home page
+                return redirect('index')  # redirect to dashboard page
     else:
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
