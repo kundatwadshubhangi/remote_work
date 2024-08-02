@@ -9,9 +9,6 @@ from google.oauth2 import id_token
 from google.auth.transport import requests
 from .utils import generate_employee_id
 
-
-
-
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
@@ -35,7 +32,7 @@ def Login_view(request):
             email= form.cleaned_data['email']
             password = form.cleaned_data['password']
             user = authenticate(email=email, password=password)
-            if user is not None:
+            if user:
                 login(request, user)
                 return redirect('index')  # redirect to dashboard page
     else:
