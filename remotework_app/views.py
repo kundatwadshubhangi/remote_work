@@ -3,19 +3,18 @@ from django.http import HttpResponse
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from.forms import LoginForm, RegistrationForm
-from django.contrib.auth import authenticate, login 
+from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_exempt
 from google.oauth2 import id_token
 from google.auth.transport import requests
 from .utils import generate_employee_id
+from django.urls import reverse
+
 
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
-        print (form)
-
         if form.is_valid():
-            # Hash the password before saving
             user = form.save(commit=False)
             user.empid = generate_employee_id()
             user.save()
@@ -26,19 +25,23 @@ def register(request):
     return render(request, 'register.html', {'form': form})
 
 def Login_view(request):
+    form = LoginForm()
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
-            email= form.cleaned_data['email']
+            username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            user = authenticate(email=email, password=password)
+            user = authenticate(request, username=username, password=password)
             if user:
                 login(request, user)
-                return redirect('index')  # redirect to dashboard page
-    else:
-        form = LoginForm()
+                return redirect(reverse('index'))
+            else:
+                # Handle invalid login credentials
+                print("Invalid login credentials")
+        else:
+            # Handle invalid form data
+            print("Invalid form data")
     return render(request, 'login.html', {'form': form})
-
 
 @csrf_exempt
 def auth_receiver(request):
@@ -61,8 +64,9 @@ def auth_receiver(request):
     return redirect('login')
 
 
-def sign_out(request):
-    del request.session['user_data']
+# logout page
+def user_logout(request):
+    logout(request)
     return redirect('login')
 
 

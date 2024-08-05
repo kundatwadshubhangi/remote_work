@@ -1,17 +1,16 @@
-from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.db import models
+from django.contrib.auth.hashers import make_password
 
-# Create your models here.
-
-class User(models.Model):
-    id=models.AutoField(primary_key=True)
+class User(AbstractUser):
     empid = models.CharField(max_length=8, unique=True)
-    email=models.EmailField(unique=True)
-    full_name=models.CharField(max_length=100)
-    role=models.CharField(max_length=50)
-    join_date = models.DateField(null=True)
-    password = models.CharField(max_length=128)
-    confirm_password = models.CharField(max_length=128)
+    role = models.CharField(max_length=50)
+
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self.password = make_password(self.password)
+        super().save(*args, **kwargs)
     
 
     # Add related_name to avoid clash with auth.User.groups
@@ -33,7 +32,7 @@ class User(models.Model):
     )
 
     def __str__(self):
-        return self.full_name
+        return self.username
     
 
 class Task(models.Model):
@@ -65,7 +64,7 @@ class TimeLog(models.Model):
         return None
 
     def _str_(self):
-        return f"TimeLog for task {self.task.title} by {self.user.full_name}"
+        return f"TimeLog for task {self.task.title} by {self.user.username}"
 
 
 class Message(models.Model):
@@ -79,3 +78,6 @@ class Message(models.Model):
 
     def _str_(self):
         return f"Message from {self.sender.username} to {self.receiver.username}"
+    
+
+    

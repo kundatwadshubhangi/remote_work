@@ -1,14 +1,15 @@
-from django import forms
-from.models import User
+from django import forms 
+from .models import User
+
 
 class RegistrationForm(forms.ModelForm):
-    password = forms.CharField(label='Password', widget=forms.PasswordInput)
-    confirm_password = forms.CharField(label='Confirm Password', widget=forms.PasswordInput)
-
+    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
     class Meta:
         model = User
-        fields = ('email','full_name', 'role','join_date')
+        fields = ('username', 'email', 'first_name', 'last_name', 'role', 'is_staff', 'is_active', 'is_superuser')
+
 
 class LoginForm(forms.Form):
-     email = forms.CharField(max_length=255)
-     password = forms.CharField(label='Password', widget=forms.PasswordInput)
+    username = forms.CharField()
+    password = forms.CharField(widget=forms.PasswordInput)
