@@ -6,6 +6,8 @@ class User(AbstractUser):
     empid = models.CharField(max_length=8, unique=True)
     role = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.username
 
     def save(self, *args, **kwargs):
         if not self.pk:
@@ -31,8 +33,6 @@ class User(AbstractUser):
         verbose_name='user permissions',
     )
 
-    def __str__(self):
-        return self.username
     
 
 class Task(models.Model):

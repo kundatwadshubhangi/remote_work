@@ -2,20 +2,19 @@ import os
 from django.http import HttpResponse
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from.forms import LoginForm, RegistrationForm
+from.forms import RegistrationForm
 from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_exempt
 from google.oauth2 import id_token
 from google.auth.transport import requests
 from .utils import generate_employee_id
-from django.urls import reverse
 
 
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
+            user = form.save()
             user.empid = generate_employee_id()
             user.save()
             messages.success(request, 'You have successfully registered! Please log in to continue.')
@@ -24,24 +23,19 @@ def register(request):
         form = RegistrationForm()
     return render(request, 'register.html', {'form': form})
 
+
 def Login_view(request):
-    form = LoginForm()
     if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user = authenticate(request, username=username, password=password)
-            if user:
-                login(request, user)
-                return redirect(reverse('index'))
-            else:
-                # Handle invalid login credentials
-                print("Invalid login credentials")
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('index')  # redirect to index page
         else:
-            # Handle invalid form data
-            print("Invalid form data")
-    return render(request, 'login.html', {'form': form})
+            return render(request, 'login.html', {'error': 'Invalid username or password'})
+    return render(request, 'login.html')
+
 
 @csrf_exempt
 def auth_receiver(request):

@@ -137,16 +137,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SECURE_REFERRER_POLICY = "no-referrer-when-downgrade"
 
-AUTH_USER_MODEL = 'remotework_app.User'
-
 LOGIN_REDIRECT_URL = 'index'
 
-AUTH_PASSWORD_HASHERS = [
+PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
     'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
     'django.contrib.auth.hashers.Argon2PasswordHasher',
     'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
     'django.contrib.auth.hashers.BCryptPasswordHasher',
 ]
+
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
+
+AUTH_USER_MODEL = 'remotework_app.User'
 
 

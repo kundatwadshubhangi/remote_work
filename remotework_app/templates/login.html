@@ -53,11 +53,7 @@
       </style>
   </head>
     <body>
-      {% if messages %}
-        {% for message in messages %}
-          <h1 class="text-2xl font-bold leading-tight tracking-tight text-gray-900 md:text-4xl dark:text-white">{{ message }}</h1>
-        {% endfor %}
-      {% endif %}
+      
       <section class="flex flex-col items-center pt-6">
         <div
           class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
@@ -66,11 +62,11 @@
               account
             </h1>
             <form class="space-y-4 md:space-y-6" method="POST">
-              {% csrf_token %}
+              <input type="hidden" name="csrfmiddlewaretoken" value="6TGFY1yUvDGWoP9S2QuwtA2CoP7GoEF6k7x1g4aazSyWp2ETAdZ8ZPWuNdoBzJ7N">
               
               <div>
                 <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
-                <input type="text" name="username" id="" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Username" required="id_username">
+                <input type="text" name="username" id="username" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Username" required="id_username">
               </div>
               <div>
                 <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
@@ -83,14 +79,7 @@
               </div>
               <button type="submit" class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</button>
               <div class="container">
-                {% if request.session.user_data %}
-                <div>
-                    <p>Hi {{ request.session.user_data.given_name }} 🙂</p>
-                    <p>Your email is {{ request.session.user_data.email }}</p>
-                    <img src="{{ request.session.user_data.picture }}" alt="User picture">
-                    <p>Click here to <a href="/sign-out">Sign out</a></p>
-                </div>
-                {% else %}
+                
                     
                 <div id="g_id_onload"
                   data-client_id="551316212137-572ikr7rddfkr4efot8l5bc12el5vl9a.apps.googleusercontent.com"
@@ -108,11 +97,11 @@
                   data-size="large"
                   data-logo_alignment="left">
              </div>
-                {% endif %}
+                
                 </div>
             
               <p class="text-sm font-light text-gray-500 dark:text-gray-400">Don't have an account? <a
-                class="font-medium text-blue-600 hover:underline dark:text-blue-500" href="{% url 'register' %}">Register</a>
+                class="font-medium text-blue-600 hover:underline dark:text-blue-500" href="/register/">Register</a>
               </p>
             </form>
           </div>
