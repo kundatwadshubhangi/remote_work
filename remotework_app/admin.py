@@ -8,7 +8,7 @@ from .models import Message
 #This is a custom ModelAdmin class that defines how the User model should be displayed and edited in the admin interface.
 
 class UserAdmin(admin.ModelAdmin):
-    fields = ('email', 'full_name', 'role', 'join_date', 'empid')
+    fields = ('username','email', 'first_name','last_name', 'role', 'date_joined','last_login', 'empid')
 
 admin.site.register(User, UserAdmin)
 admin.site.register(Task)

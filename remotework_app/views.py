@@ -26,12 +26,14 @@ def register(request):
 
 def Login_view(request):
     if request.method == 'POST':
+        print("Post method")
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(username=username, password=password)
+        print(username, password)
         if user is not None:
             login(request, user)
-            return redirect('index')  # redirect to index page
+            return redirect('index/')  # redirect to index page
         else:
             return render(request, 'login.html', {'error': 'Invalid username or password'})
     return render(request, 'login.html')
