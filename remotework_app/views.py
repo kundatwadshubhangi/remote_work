@@ -8,6 +8,9 @@ from django.views.decorators.csrf import csrf_exempt
 from google.oauth2 import id_token
 from google.auth.transport import requests
 from .utils import generate_employee_id
+from .models import Task
+from django.contrib.auth.decorators import login_required
+
 
 
 
@@ -69,5 +72,25 @@ def sign_out(request):
     return redirect('login')
 
 
+
+@login_required
+def filter_tasks(request):
+    status = request.GET.get('status')
+    priority = request.GET.get('priority')
+    search_query = request.GET.get('search')
+    tasks = Task.objects.filter(assigned_to=request.user)
+    if status:
+        tasks = tasks.filter(status=status)
+    if priority:
+        tasks = tasks.filter(priority=priority)
+    if search_query:
+        tasks = tasks.filter(title__icontains=search_query) | tasks.filter(description__icontains=search_query)
+    return render(request, 'dashboard.html', {'tasks': tasks})
+
+
+@login_required
 def Index(request):
-    return render(request, 'index.html')
+    tasks = Task.objects.all()
+    for task in tasks:
+        print(task.title)
+    return render(request, 'index.html', {'tasks': tasks})

@@ -86,3 +86,5 @@ class Message(models.Model):
 
     def _str_(self):
         return f"Message from {self.sender.username} to {self.receiver.username}"
+
+
