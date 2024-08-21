@@ -95,13 +95,7 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
@@ -137,6 +131,20 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SECURE_REFERRER_POLICY = "no-referrer-when-downgrade"
 
+LOGIN_REDIRECT_URL = 'index'
 
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.BCryptPasswordHasher',
+]
+
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
+SESSION_COOKIE_DOMAIN = None
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+
+AUTH_USER_MODEL = 'remotework_app.User'
 
 

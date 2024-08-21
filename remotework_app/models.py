@@ -1,48 +1,11 @@
-from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.contrib.auth.hashers import make_password
+from django.db import models
 
-# Create your models here.
 
-class User(models.Model):
-    id=models.AutoField(primary_key=True)
-    email=models.EmailField(unique=True)
-    full_name=models.CharField(max_length=100)
-    role=models.CharField(max_length=50)
-    join_date = models.DateField(null=True)
-    password = models.CharField(max_length=128)
-    confirm_password = models.CharField(max_length=128)
+class User(AbstractUser):
     empid = models.CharField(max_length=8, unique=True)
+    role = models.CharField(max_length=50)
     
-    def set_password(self, password):
-        self.password = make_password(password)
-
-    def check_password(self, password):
-        from django.contrib.auth.hashers import check_password
-        return check_password(password, self.password)
-
-    # Add related_name to avoid clash with auth.User.groups
-    groups = models.ManyToManyField(
-        'auth.Group',
-        related_name='custom_user_set',
-        blank=True,
-        help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.',
-        verbose_name='groups',
-    )
-
-    # Add related_name to avoid clash with auth.User.user_permissions
-    user_permissions = models.ManyToManyField(
-        'auth.Permission',
-        related_name='custom_user_set',
-        blank=True,
-        help_text='Specific permissions for this user.',
-        verbose_name='user permissions',
-    )
-
-    def __str__(self):
-        return self.full_name
-    
-
 class Task(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
@@ -72,7 +35,7 @@ class TimeLog(models.Model):
         return None
 
     def _str_(self):
-        return f"TimeLog for task {self.task.title} by {self.user.full_name}"
+        return f"TimeLog for task {self.task.title} by {self.user.username}"
 
 
 class Message(models.Model):
@@ -86,5 +49,3 @@ class Message(models.Model):
 
     def _str_(self):
         return f"Message from {self.sender.username} to {self.receiver.username}"
-
-

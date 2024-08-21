@@ -2,48 +2,63 @@ import os
 from django.http import HttpResponse
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from.forms import LoginForm, RegistrationForm
-from django.contrib.auth import authenticate, login 
+from.forms import RegistrationForm
+from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_exempt
 from google.oauth2 import id_token
 from google.auth.transport import requests
 from .utils import generate_employee_id
 from .models import Task
 from django.contrib.auth.decorators import login_required
-
-
-
+def generate_employee_id():
+    # Implement your logic to generate a unique employee ID here
+    import random
+    return str(random.randint(10000000, 99999999))
 
 
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
-        print (form)
-
+        print(request.POST)  # Add this to debug
         if form.is_valid():
-            # Hash the password before saving
+            print("valid")
             user = form.save(commit=False)
             user.empid = generate_employee_id()
+            user.set_password(form.cleaned_data['password1'])
             user.save()
             messages.success(request, 'You have successfully registered! Please log in to continue.')
             return redirect('login')
+        else:
+            print("Errors in username:", form.errors.get('username'))
+            print("Errors in email:", form.errors.get('email'))
+            print("Errors in first_name:", form.errors.get('first_name'))
+            print("Errors in last_name:", form.errors.get('last_name'))
+            print("Errors in role:", form.errors.get('role'))
+            print("Errors in date_joined:", form.errors.get('date_joined'))
+            print("Errors in last_login:", form.errors.get('last_login'))
+            print("Errors in is_staff:", form.errors.get('is_staff'))
+            print("Errors in is_active:", form.errors.get('is_active'))
+            print("Errors in is_superuser:", form.errors.get('is_superuser'))
+            print("Errors in password1:", form.errors.get('password1'))
+            print("Errors in confirm_password:", form.errors.get('password2'))
     else:
         form = RegistrationForm()
     return render(request, 'register.html', {'form': form})
 
+
 def Login_view(request):
     if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            email= form.cleaned_data['email']
-            password = form.cleaned_data['password']
-            user = authenticate(email=email, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('index')  # redirect to dashboard page
-    else:
-        form = LoginForm()
-    return render(request, 'login.html', {'form': form})
+        print("Post method")
+        username = request.POST['username']
+        password = request.POST['password1']
+        user = authenticate(username=username, password=password)
+        print(username, password)
+        if user is not None:
+            login(request, user)
+            return redirect('index')  # redirect to index page
+        else:
+            return render(request, 'login.html', {'error': 'Invalid username or password'})
+    return render(request, 'login.html')
 
 
 @csrf_exempt
@@ -67,8 +82,9 @@ def auth_receiver(request):
     return redirect('login')
 
 
-def sign_out(request):
-    del request.session['user_data']
+# logout page
+def user_logout(request):
+    logout(request)
     return redirect('login')
 
 
