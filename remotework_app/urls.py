@@ -7,4 +7,5 @@ urlpatterns = [
     path('user_logout', views.user_logout, name='sign_out'),
     path('auth-receiver', views.auth_receiver, name='auth_receiver'),
     path('index/', views.Index, name='index'),
+    path('new_task/', views.create_task, name='new_task'),
 ]

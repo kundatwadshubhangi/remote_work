@@ -2,14 +2,15 @@ import os
 from django.http import HttpResponse
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from.forms import RegistrationForm
+from.forms import RegistrationForm, TaskForm
 from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_exempt
 from google.oauth2 import id_token
 from google.auth.transport import requests
-from .utils import generate_employee_id
-from .models import Task
+from .models import Task, User
 from django.contrib.auth.decorators import login_required
+
+
 def generate_employee_id():
     # Implement your logic to generate a unique employee ID here
     import random
@@ -110,3 +111,15 @@ def Index(request):
     for task in tasks:
         print(task.title)
     return render(request, 'index.html', {'tasks': tasks})
+
+
+def create_task(request):
+    if request.method == 'POST':
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')  # redirect to task list page
+    else:
+        form = TaskForm()
+        users = User.objects.all()  # Get all users
+    return render(request, 'new_task.html', {'form': form, 'users': users})

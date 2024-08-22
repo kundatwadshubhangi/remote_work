@@ -1,5 +1,5 @@
 from django import forms 
-from .models import User
+from .models import User, Task
 from django.contrib.auth.forms import UserCreationForm
 
 class RegistrationForm(UserCreationForm):
@@ -22,3 +22,13 @@ class RegistrationForm(UserCreationForm):
 class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
+
+
+class TaskForm(forms.ModelForm):
+    class Meta:
+        model = Task
+        fields = ('title', 'description', 'assigned_to', 'status', 'priority', 'due_date')
+
+    def __init__(self, *args, **kwargs):
+        super(TaskForm, self).__init__(*args, **kwargs)
+        self.fields['assigned_to'].queryset = User.objects.all()
