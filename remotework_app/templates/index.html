@@ -1,7 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
 <html   lang="en" >
-
 <head>
 	<!-- Required meta tags -->
 
@@ -45,67 +44,50 @@
         </li>
 
         <li class="sidebar-item">
-          <a class="sidebar-link gap-3 py-2.5 my-1 text-base  flex items-center relative  rounded-md text-gray-500  w-full" href="./index.html"
-           >
+          <a class="sidebar-link gap-3 py-2.5 my-1 text-base  flex items-center relative  rounded-md text-gray-500  w-full" href="./index.html">
             <i class="ti ti-layout-dashboard ps-2  text-2xl"></i> <span>Dashboard</span>
           </a>
         </li>
-
-        <li class="text-xs font-bold mb-4 mt-6">
-          <i class="ti ti-dots nav-small-cap-icon text-lg hidden text-center"></i>
-          <span class="text-xs text-gray-400 font-semibold"></span>
-        </li>
-
         <li class="sidebar-item">
-          <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full" href="./components/buttons.html"
-           >
-            <i class="ti ti-article ps-2 text-2xl"></i> <span>Overview</span>
+          <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full" href="./components/buttons.html">
+            <i class="ti ti-article ps-2 text-2xl"></i>
+			<span>Overview</span>
           </a>
         </li>
-
         <li class="sidebar-item">
-          <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full" href="./components/alerts.html"
-           >My People</span>
+          <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full" href="./components/alerts.html">
+			<i class="ti ti-user ps-2 text-2xl"></i
+			<span>My People</span>
           </a>
         </li>        
-
-        <li class="sidebar-item">
-          <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full" href="./components/cards.html"
-           >
-            <i class="ti ti-cards ps-2 text-2xl"></i> <span>Manage task</span>
+		<li class="sidebar-item">
+          <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full" href="./components/cards.html">
+            <i class="ti ti-cards ps-2 text-2xl"></i>
+			<span>Manage task</span>
           </a>
-        </li>   
-
+        </li>
         <li class="sidebar-item">
-          <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full" href="./components/forms.html"
-           >
+          <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full" href="./components/forms.html">
             <i class="ti ti-file-description ps-2 text-2xl"></i> <span>Done</span>
           </a>
-        </li> 
-
+        </li>
 		<li class="text-xs font-bold mb-4 mt-6">
 			<i class="ti ti-dots nav-small-cap-icon text-lg hidden text-center"></i>
 			<span class="text-xs text-gray-400 font-semibold">All Priorities</span>
-		  </li>
-
-		  <li class="text-xs font-bold mb-4 mt-6">
+		</li>
+		<li class="text-xs font-bold mb-4 mt-6">
 			<i class="ti ti-dots nav-small-cap-icon text-lg hidden text-center"></i>
 			<span class="text-xs text-gray-400 font-semibold">Low</span>
-		  </li>
-
-		  <li class="text-xs font-bold mb-4 mt-6">
+		</li>
+		<li class="text-xs font-bold mb-4 mt-6">
 			<i class="ti ti-dots nav-small-cap-icon text-lg hidden text-center"></i>
 			<span class="text-xs text-gray-400 font-semibold">Medium</span>
-		  </li>
-
-		  <li class="text-xs font-bold mb-4 mt-6">
+		</li>
+		<li class="text-xs font-bold mb-4 mt-6">
 			<i class="ti ti-dots nav-small-cap-icon text-lg hidden text-center"></i>
 			<span class="text-xs text-gray-400 font-semibold">High</span>
-		  </li>
-
-        
-        
-        <li class="text-xs font-bold mb-4 mt-8">
+		</li>
+		<li class="text-xs font-bold mb-4 mt-8">
           <i class="ti ti-dots nav-small-cap-icon  text-lg hidden text-center"></i>
           <span class="text-xs text-gray-400 font-semibold">AUTH</span>
         </li>
@@ -218,7 +200,7 @@
                 <p class="text-sm ">My Task</p>
             </a>
             <div class="px-4 mt-[7px] grid">
-                <a href="../../pages/authentication-login.html" class="btn-outline-primary font-medium text-[15px] w-full hover:bg-blue-600 hover:text-white">Logout</a>
+                <a href="{% url 'login' %}" class="btn-outline-primary font-medium text-[15px] w-full hover:bg-blue-600 hover:text-white">Logout</a>
             </div>
 
         </div>
