@@ -107,7 +107,7 @@ def filter_tasks(request):
 
 @login_required
 def Index(request):
-    tasks = Task.objects.all()
+    tasks = Task.objects.filter(assigned_to=request.user)
     for task in tasks:
         print(task.title)
     return render(request, 'index.html', {'tasks': tasks})
