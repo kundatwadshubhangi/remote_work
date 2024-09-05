@@ -1,293 +1,236 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<!-- Required meta tags -->
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-		<!-- Favicon icon-->
-		<link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logos/favicon.png' %}" />
+    <!-- Favicon icon-->
+    <link rel="shortcut icon" type="image/png" href="{% static 'assets/images/logos/favicon.png' %}" />
 
-		<!-- Google Fonts -->
-		<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-		<!-- Tabler Icons -->
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+    <!-- Tabler Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
 
-		<!-- Core Css -->
-		<link rel="stylesheet" href="{% static 'css/theme.css' %}" />
+    <!-- Core Css -->
+    <link rel="stylesheet" href="{% static 'css/theme.css' %}" />
 
-		<title>Remote Work Productivity Tracker</title>
-	</head>
+    <title>Remote Work Productivity Tracker</title>
+</head>
 
-	<body class="bg-surface">
-		<main>
-			<!-- Start the project -->
-			<div id="main-wrapper" class="flex p-5 xl:pr-0">
-				<aside id="application-sidebar-brand" class="hs-overlay hs-overlay-open:translate-x-0 -translate-x-full transform hidden xl:block xl:translate-x-0 xl:end-auto xl:bottom-0 fixed xl:top-5 xl:left-auto top-0 left-0 with-vertical h-screen z-[999] shrink-0 w-[270px] shadow-md xl:rounded-md rounded-none bg-white left-sidebar transition-all duration-300">
-					<!-- Start Vertical Layout Sidebar -->
-					<div class="p-4">
-						<a href="" class="text-nowrap">
-							<img src="https://assets.themuse.com/uploaded/companies/12214/small_logo.png?v=5dad600268712acd5fc537403000906a4069baf2e461a0d9e4bde72899c59753" width="100" height="100" />
-						</a>
-					</div>
-					<div class="scroll-sidebar" data-simplebar="">
-						<nav class="w-full flex flex-col sidebar-nav px-4 mt-5">
-							<ul id="sidebarnav" class="text-gray-600 text-sm">
-								<li class="text-xs font-bold pb-[5px]">
-									<i class="ti ti-dots nav-small-cap-icon text-lg hidden text-center"></i>
-									<span class="text-xs text-gray-400 font-semibold">HOME</span>
-								</li>
-
-								<li class="sidebar-item">
-									<a class="sidebar-link gap-3 py-2.5 my-1 text-base flex items-center relative rounded-md text-gray-500 w-full" href="./index.html">
-										<i class="ti ti-layout-dashboard ps-2 text-2xl"></i>
-										<span>Dashboard</span>
-									</a>
-								</li>
-								<li class="sidebar-item">
-									<a class="sidebar-link gap-3 py-2.5 my-1 text-base flex items-center relative rounded-md text-gray-500 w-full" href="./components/buttons.html">
-										<i class="ti ti-article ps-2 text-2xl"></i>
-										<span>Overview</span>
-									</a>
-								</li>
-								<li class="sidebar-item">
-									<a class="sidebar-link gap-3 py-2.5 my-1 text-base flex items-center relative rounded-md text-gray-500 w-full" href="./components/alerts.html">
-										<i class="ti ti-user ps-2 text-2xl"></i>
-										<span>My People</span>
-									</a>
-								</li>
-								<li class="sidebar-item">
-									<a class="sidebar-link gap-3 py-2.5 my-1 text-base flex items-center relative rounded-md text-gray-500 w-full" href="./components/cards.html">
-										<i class="ti ti-cards ps-2 text-2xl"></i>
-										<span>Manage task</span>
-									</a>
-								</li>
-								<li class="sidebar-item">
-									<a class="sidebar-link gap-3 py-2.5 my-1 text-base flex items-center relative rounded-md text-gray-500 w-full" href="./components/forms.html">
-										<i class="ti ti-file-description ps-2 text-2xl"></i>
-										<span>Done</span>
-									</a>
-								</li>
-								<li class="text-xs font-bold mb-4 mt-6">
-									<i class="ti ti-dots nav-small-cap-icon text-lg hidden text-center"></i>
-									<span class="text-xs text-gray-400 font-semibold">All Priorities</span>
-								</li>
-								<li class="text-xs font-bold mb-4 mt-6">
-									<i class="ti ti-dots nav-small-cap-icon text-lg hidden text-center"></i>
-									<span class="text-xs text-gray-400 font-semibold">Low</span>
-								</li>
-								<li class="text-xs font-bold mb-4 mt-6">
-									<i class="ti ti-dots nav-small-cap-icon text-lg hidden text-center"></i>
-									<span class="text-xs text-gray-400 font-semibold">Medium</span>
-								</li>
-								<li class="text-xs font-bold mb-4 mt-6">
-									<i class="ti ti-dots nav-small-cap-icon text-lg hidden text-center"></i>
-									<span class="text-xs text-gray-400 font-semibold">High</span>
-								</li>
-								<li class="text-xs font-bold mb-4 mt-8">
-									<i class="ti ti-dots nav-small-cap-icon  text-lg hidden text-center"></i>
-									<span class="text-xs text-gray-400 font-semibold">AUTH</span>
-								</li>
-							</ul>
-						</nav>
-					</div>
+<body class="bg-surface">
+    <div id="main-wrapper" class="flex h-screen">
+		<div class="lg:flex lg:flex-row">
+			<aside id="application-sidebar-brand" class="lg:w-64 bg-gray-100 p-4">
+				<!-- Start Vertical Layout Sidebar -->
+				<div class="p-4">
+					<a href="" class="text-nowrap">
+						<img src="https://assets.themuse.com/uploaded/companies/12214/small_logo.png?v=5dad600268712acd5fc537403000906a4069baf2e461a0d9e4bde72899c59753" width="100" height="100" />
+					</a>
+				</div>
+				<div class="scroll-sidebar" data-simplebar="">
+					<nav class="w-full flex flex-col sidebar-nav px-4 mt-5">
+						<ul id="sidebarnav" class="text-gray-600 text-sm">
+							<li class="text-xs font-bold pb-[5px]">
+								<i class="ti ti-dots nav-small-cap-icon text-lg hidden text-center"></i>
+								<span class="text-xs text-gray-400 font-semibold">HOME</span>
+							</li>
+		
+							<li class="sidebar-item">
+								<a class="sidebar-link gap-3 py-2.5 my-1 text-base flex items-center relative rounded-md text-gray-500 w-full" href="./index.html">
+									<i class="ti ti-layout-dashboard ps-2 text-2xl"></i>
+									<span>Dashboard</span>
+								</a>
+							</li>
+							<li class="sidebar-item">
+								<a class="sidebar-link gap-3 py-2.5 my-1 text-base flex items-center relative rounded-md text-gray-500 w-full" href="./components/buttons.html">
+									<i class="ti ti-article ps-2 text-2xl"></i>
+									<span>Overview</span>
+								</a>
+							</li>
+							<li class="sidebar-item">
+								<a class="sidebar-link gap-3 py-2.5 my-1 text-base flex items-center relative rounded-md text-gray-500 w-full" href="./components/alerts.html">
+									<i class="ti ti-user ps-2 text-2xl"></i>
+									<span>My People</span>
+								</a>
+							</li>
+							<li class="sidebar-item">
+								<a class="sidebar-link gap-3 py-2.5 my-1 text-base flex items-center relative rounded-md text-gray-500 w-full" href="./components/cards.html">
+									<i class="ti ti-cards ps-2 text-2xl"></i>
+									<span>Manage task</span>
+								</a>
+							</li>
+							<li class="sidebar-item">
+								<a class="sidebar-link gap-3 py-2.5 my-1 text-base flex items-center relative rounded-md text-gray-500 w-full" href="./components/forms.html">
+									<i class="ti ti-file-description ps-2 text-2xl"></i>
+									<span>Done</span>
+								</a>
+							</li>
+							<li class="text-xs font-bold mb-4 mt-6">
+								<i class="ti ti-dots nav-small-cap-icon text-lg hidden text-center"></i>
+								<span class="text-xs text-gray-400 font-semibold">All Priorities</span>
+							</li>
+							<li class="text-xs font-bold mb-4 mt-6">
+								<i class="ti ti-dots nav-small-cap-icon text-lg hidden text-center"></i>
+								<span class="text-xs text-gray-400 font-semibold">Low</span>
+							</li>
+							<li class="text-xs font-bold mb-4 mt-6">
+								<i class="ti ti-dots nav-small-cap-icon text-lg hidden text-center"></i>
+								<span class="text-xs text-gray-400 font-semibold">Medium</span>
+							</li>
+							<li class="text-xs font-bold mb-4 mt-6">
+								<i class="ti ti-dots nav-small-cap-icon text-lg hidden text-center"></i>
+								<span class="text-xs text-gray-400 font-semibold">High</span>
+							</li>
+						</ul>
+					</nav>
 					<!-- Bottom Upgrade Option -->
 					<div class="m-4 relative grid">
 						<a href="{% url 'new_task' %}">
-							<button class="text-base font-semibold hover:bg-blue-700 btn">Add New Task</button>
-						</a>
-					</div>
-				</aside>
-			</div>
-			<div class=" w-full page-wrapper xl:px-6 px-0">
-				<!-- Main Content -->
-				<main class="h-full  max-w-full">
-					<div class="container full-container p-0 flex flex-col gap-6">
-						<!--  Header Start -->
-						<header class=" bg-white shadow-md rounded-md w-full text-sm py-4 px-6">
-							<!-- ========== HEADER ========== -->
-							<nav class=" w-ful flex items-center justify-between" aria-label="Global">
-								<ul class="icon-nav flex items-center gap-4">
-									<li class="relative xl:hidden">
-										<a class="text-xl  icon-hover cursor-pointer text-heading" id="headerCollapse" data-hs-overlay="#application-sidebar-brand" aria-controls="application-sidebar-brand" aria-label="Toggle navigation" href="javascript:void(0)">
-											<i class="ti ti-menu-2 relative z-1"></i>
-										</a>
-									</li>
-									<li class="relative">
-										<div class="hs-dropdown relative inline-flex [--placement:bottom-left] sm:[--trigger:hover]">
-											<a class="relative hs-dropdown-toggle inline-flex hover:text-gray-500 text-gray-300" href="#">
-											</a>
-											<div class="card hs-dropdown-menu transition-[opacity,margin] rounded-md duration hs-dropdown-open:opacity-100 opacity-0 mt-2 min-w-max  w-[300px] hidden z-[12]"
-											aria-labelledby="hs-dropdown-custom-icon-trigger">
-												<div>
-													<h3 class="text-gray-500 font-semibold text-base px-6 py-3">Notification</h3>
-													<ul class="list-none  flex flex-col">
-														<li>
-															<a href="#" class="py-3 px-6 block hover:bg-gray-200">
-															</a>
-														</li>
-														<li>
-															<a href="#" class="py-3 px-6 block hover:bg-gray-200">
-															</a>
-														</li>
-														<li>
-															<a href="#" class="py-3 px-6 block hover:bg-gray-200">
-															</a>
-														</li>
-														<li>
-															<a href="#" class="py-3 px-6 block hover:bg-gray-200">
-															</a>
-														</li>
-														<li>
-															<a href="#" class="py-3 px-6 block hover:bg-gray-200">
-															</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</li>
-								</ul>
-								<div class="flex items-center gap-4">
-									<div class="hs-dropdown relative inline-flex [--placement:bottom-right] sm:[--trigger:hover]">
-										<a class="relative hs-dropdown-toggle cursor-pointer align-middle rounded-full">
-											<img  src="https://assets.themuse.com/uploaded/companies/12214/small_logo.png?v=5dad600268712acd5fc537403000906a4069baf2e461a0d9e4bde72899c59753"width ="100" height="100">
-										</a>
-										<div class="card hs-dropdown-menu transition-[opacity,margin] rounded-md duration hs-dropdown-open:opacity-100 opacity-0 mt-2 min-w-max  w-[200px] hidden z-[12]" aria-labelledby="hs-dropdown-custom-icon-trigger">
-											<div class="card-body p-0 py-2">
-												<a href="javscript:void(0)" class="flex gap-2 items-center font-medium px-4 py-1.5 hover:bg-gray-200 text-gray-400">
-													<i class="ti ti-user  text-xl "></i>
-													<p class="text-sm ">My Profile</p>
-												</a>
-												<a href="javscript:void(0)" class="flex gap-2 items-center font-medium px-4 py-1.5 hover:bg-gray-200 text-gray-400">
-													<i class="ti ti-mail  text-xl"></i>
-													<p class="text-sm ">My Account</p>
-												</a>
-												<a href="javscript:void(0)" class="flex gap-2 items-center font-medium px-4 py-1.5 hover:bg-gray-200 text-gray-400">
-													<i class="ti ti-list-check  text-xl "></i>
-													<p class="text-sm ">My Task</p>
-												</a>
-												<div class="px-4 mt-[7px] grid">
-													<a href="{% url 'login' %}" class="btn-outline-primary font-medium text-[15px] w-full hover:bg-blue-600 hover:text-white">Logout</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</nav>
-							<!-- ========== END HEADER ========== -->
-						</header>
-						<!--  Header End -->
-						<div class="grid grid-cols-1 lg:grid-cols-3 lg:gap-x-6 gap-x-0 lg:gap-y-0 gap-y-6">
-							<div class="flex flex-col gap-6">
-								<div class="card">
-									<div class="card-body">
-										<h4 class="text-gray-500 text-lg font-semibold mb-4">Task Progress</h4>
-										<div class="flex items-center justify-between gap-12">
-											<div>
-												<h3 class="text-[22px] font-semibold text-gray-500 mb-4">Task Information</h3>
-												<div class="flex items-center gap-1 mb-3">
-													<span class="flex items-center justify-center w-5 h-5 rounded-full bg-teal-400">
-														<i class="ti ti-arrow-up-left text-teal-500"></i>
-													</span>
-													<p class="text-gray-500 text-sm font-normal">Task description</p>
-													<p class="text-gray-400 text-sm font-normal text-nowrap">Task status</p>
-												</div>
-												<div class="flex gap-4">
-													<div class="flex gap-2 items-center">
-														<span class="w-2 h-2 rounded-full bg-blue-600"></span>
-														<p class="text-gray-400 font-normal text-xs">Started</p>
-													</div>
-													<div class="flex gap-2 items-center">
-														<span class="w-2 h-2 rounded-full bg-red-500"></span>
-														<p class="text-gray-400 font-normal text-xs">In Progress</p>
-													</div>
-												</div>
-											</div>
-											<div id="grade"></div>
-										</div>
-									</div>
-								</div>
-								<div id="earning"></div>
-							</div>
-							<div class="col-span-2">
-								<div class="card h-full">
-									<div class="card-body">
-										<h4 class="text-gray-500 text-lg font-semibold mb-5">Manage Task</h4>
-										<div class="relative overflow-x-auto">
-											<table class="text-left w-full whitespace-nowrap text-sm text-gray-500">
-												<thead>
-													<tr class="text-sm">
-														<th scope="col" class="p-4 font-semibold">Title</th>
-														<th scope="col" class="p-4 font-semibold">Description</th>
-														<th scope="col" class="p-4 font-semibold">Assigned To</th>
-														<th scope="col" class="p-4 font-semibold">Status</th>
-														<th scope="col" class="p-4 font-semibold">Priority</th>
-														<th scope="col" class="p-4 font-semibold">Due Date</th>
-														<th scope="col" class="p-4 font-semibold">Created At</th>
-														<th scope="col" class="p-4 font-semibold">Updated At</th>
-													</tr>
-												</thead>
-												<tbody>
-													{% for task in tasks %}
-													<tr>
-														<td class="p-4">
-															<h3 class="font-medium text-teal-500">{{ task.title }}</h3>
-														</td>
-														<td class="p-4">
-															<h3 class="font-medium text-teal-500">{{ task.description }}</h3>
-														</td>
-														<td class="p-4">
-															<h3 class="font-medium text-teal-500">{{ task.assigned_to }}</h3>
-														</td>
-														<td class="p-4">
-															<span class="inline-flex items-center py-2 px-4 rounded-3xl font-semibold bg-teal-400 text-teal-500">{{ task.status }}</span>
-														</td>
-														<td class="p-4">
-															<h3 class="font-medium text-teal-500">{{ task.priority }}</h3>
-														</td>
-														<td class="p-4">
-															<h3 class="font-medium text-teal-500">{{ task.due_date }}</h3>
-														</td>
-														<td class="p-4">
-															<h3 class="font-medium text-teal-500">{{ task.created_at }}</h3>
-														</td>
-														<td class="p-4">
-															<h3 class="font-medium text-teal-500">{{ task.updated_at }}</h3>
-														</td>
-													</tr>
-													{% endfor %}
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-						<footer>
-							<p class="text-base text-gray-400 font-normal p-3 text-center">
-								Design and Developed by <a href="https://www.wrappixel.com/" target="_blank" class="text-blue-600 underline hover:text-blue-700">Wrappixel</a>
-							</p>
-						</footer>
-					</div>
-				</main>
-				<!-- Main Content End -->
-			</div>
-			</div>
-			<!--end of project-->
-		</main>
-		<script src="{% static 'libs/jquery/dist/jquery.min.js' %}"></script>
-		<script src="{% static 'libs/simplebar/dist/simplebar.min.js' %}"></script>
-		<script src="{% static 'libs/iconify-icon/dist/iconify-icon.min.js' %}"></script>
-		<script src="{% static 'libs/@preline/dropdown/index.js' %}"></script>
-		<script src="{% static 'libs/@preline/overlay/index.js' %}"></script>
-		<script src="{% static 'js/sidebarmenu.js' %}"></script>
-		<script src="{% static 'libs/apexcharts/dist/apexcharts.min.js' %}"></script>
-		<script src="{% static 'js/dashboard.js' %}"></script>
-	</body>
+                    	<button class="text-base font-semibold hover:bg-blue-700 btn">Add New Task</button>
+                		</a>
+            		</div>
+        		</div>
+    		</aside>
+        </div>
+        <main class="lg:flex-1">
+            <header>
+                <!-- Header content here -->
+                <nav class="w-full flex items-center justify-between" aria-label="Global">
+                    <ul class="icon-nav flex items-center gap-4">
+                        <li class="relative xl:hidden">
+                            <button class="text-xl  icon-hover cursor-pointer text-heading" id="headerCollapse" data-hs-overlay="#application-sidebar-brand" aria-controls="application-sidebar-brand" aria-label="Toggle navigation">
+                                <i class="ti ti-menu-2 relative z-1"></i>
+                            </button>
+                        </li>
+                        <li class="relative">
+                            <div class="hs-dropdown relative inline-flex [--placement:bottom-left] sm:[--trigger:hover]">
+                                <a class="relative hs-dropdown-toggle inline-flex hover:text-gray-500 text-gray-300" href="#">
+                                </a>
+                                <div class="card hs-dropdown-menu transition-[opacity,margin] rounded-md duration hs-dropdown-open:opacity-100 opacity-0 mt-2 min-w-max  w-[300px] hidden z-[12]"
+                                     aria-labelledby="hs-dropdown-custom-icon-trigger">
+                                    <div>
+                                        <h3 class="text-gray-500 font-semibold text-base px-6 py-3">Notification</h3>
+                                        <ul class="list-none  flex flex-col">
+                                            <li>
+                                                <a href="#" class="py-3 px-6 block hover:bg-gray-200">
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="py-3 px-6 block hover:bg-gray-200">
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="py-3 px-6 block hover:bg-gray-200">
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="py-3 px-6 block hover:bg-gray-200">
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="py-3 px-6 block hover:bg-gray-200">
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="flex items-center gap-4">
+                        <div class="hs-dropdown relative inline-flex [--placement:bottom-right] sm:[--trigger:hover]">
+                            <a class="relative hs-dropdown-toggle cursor-pointer align-middle rounded-full">
+                                <img src="https://assets.themuse.com/uploaded/companies/12214/small_logo.png?v=5dad600268712acd5fc537403000906a4069baf2e461a0d9e4bde72899c59753" width="100" height="100">
+                            </a>
+                            <div class="card hs-dropdown-menu transition-[opacity,margin] rounded-md duration hs-dropdown-open:opacity-100 opacity-0 mt-2 min-w-max  w-[200px] hidden z-[12]" aria-labelledby="hs-dropdown-custom-icon-trigger">
+                                <div class="card-body p-0 py-2">
+                                    <a href="javscript:void(0)" class="flex gap-2 items-center font-medium px-4 py-1.5 hover:bg-gray-200 text-gray-400">
+                                        <i class="ti ti-user  text-xl "></i>
+                                        <p class="text-sm ">My Profile</p>
+                                    </a>
+                                    <a href="javscript:void(0)" class="flex gap-2 items-center font-medium px-4 py-1.5 hover:bg-gray-200 text-gray-400">
+										<i class="ti ti-mail  text-xl"></i>
+                                        <p class="text-sm ">My Account</p>
+                                    </a>
+                                    <a href="javscript:void(0)" class="flex gap-2 items-center font-medium px-4 py-1.5 hover:bg-gray-200 text-gray-400">
+                                        <i class="ti ti-list-check  text-xl "></i>
+                                        <p class="text-sm ">My Task</p>
+                                    </a>
+                                    <div class="px-4 mt-[7px] grid">
+                                        <a href="{% url 'login' %}" class="btn-outline-primary font-medium text-[15px] w-full hover:bg-blue-600 hover:text-white">Logout</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <!-- ========== END HEADER ========== -->
+            </header>
+            <!--  Header End -->
+            <div class="col-span-2">
+                <div class="card h-full">
+                    <div class="card-body">
+                        <h4 class="text-gray-500 text-lg font-semibold mb-5">Manage Task</h4>
+                        <div class="relative overflow-x-auto">
+                            <table class="text-left w-full whitespace-nowrap text-sm text-gray-500">
+                                <thead>
+                                    <tr class="text-sm">
+                                        <th scope="col" class="p-4 font-semibold">Title</th>
+                                        <th scope="col" class="p-4 font-semibold">Description</th>
+                                        <th scope="col" class="p-4 font-semibold">Assigned To</th>
+                                        <th scope="col" class="p-4 font-semibold">Status</th>
+                                        <th scope="col" class="p-4 font-semibold">Priority</th>
+                                        <th scope="col" class="p-4 font-semibold">Due Date</th>
+                                        <th scope="col" class="p-4 font-semibold">Created At</th>
+                                        <th scope="col" class="p-4 font-semibold">Updated At</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for task in tasks %}
+                                    <tr>
+                                        <td class="p-4">
+                                            <h3 class="font-medium text-teal-500">{{ task.title }}</h3>
+                                        </td>
+                                        <td class="p-4">
+                                            <h3 class="font-medium text-teal-500">{{ task.description }}</h3>
+                                        </td>
+                                        <td class="p-4">
+                                            <h3 class="font-medium text-teal-500">{{ task.assigned_to }}</h3>
+                                        </td>
+                                        <td class="p-4">
+                                            <span class="inline-flex items-center py-2 px-4 rounded-3xl font-semibold bg-teal-400 text-teal-500">{{ task.status }}</span>
+                                        </td>
+                                        <td class="p-4">
+                                            <h3 class="font-medium text-teal-500">{{ task.priority }}</h3>
+                                        </td>
+                                        <td class="p-4">
+                                            <h3 class="font-medium text-teal-500">{{ task.due_date }}</h3>
+                                        </td>
+                                        <td class="p-4">
+                                            <h3 class="font-medium text-teal-500">{{ task.created_at }}</h3>
+                                        </td>
+                                        <td class="p-4">
+                                            <h3 class="font-medium text-teal-500">{{ task.updated_at }}</h3>
+                                        </td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="9" class="p-4 text-center">
+                                            No tasks available
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
 </html>
