@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://accounts.google.com/gsi/client" async></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" /> 
+    </head>
+    <body>
+        <!-- task_list.html -->
+        <div class="modal" id="task-modal">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h4 class="modal-title">Update Task</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="updatetaskForm" data-task-id="{{ task_id }}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="title">Title:</label>
+                            <input type="text" class="form-control" id="title" name="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea class="form-control" id="description" name="description" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="assigned_to">Assigned_to:</label>
+                            <input type="text" class="form-control" id="assigned_to" name="assigned_to" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="status">Status:</label>
+                            <input type="text" class="form-control" id="status" name="status" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="priority">Priority:</label>
+                            <input type="text" class="form-control" id="priority" name="priority" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="due_date">Due date:</label>
+                            <input type="date" class="form-control" id="due_date" name="due_date" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save task</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </div>
+    </body>
+</html>

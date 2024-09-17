@@ -1,7 +1,7 @@
 import os
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from.forms import RegistrationForm, TaskForm
 from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.csrf import csrf_exempt
@@ -9,6 +9,11 @@ from google.oauth2 import id_token
 from google.auth.transport import requests
 from .models import Task, User
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_http_methods
+
+
+
 
 
 def generate_employee_id():
@@ -110,6 +115,7 @@ def Index(request):
     tasks = Task.objects.filter(assigned_to=request.user)
     for task in tasks:
         print(task.title)
+        task.task_id = task.id
     return render(request, 'index.html', {'tasks': tasks})
 
 
@@ -123,3 +129,36 @@ def create_task(request):
         form = TaskForm()
         users = User.objects.all()  # Get all users
     return render(request, 'new_task.html', {'form': form, 'users': users})
+
+
+def get_task_details(request, task_id):
+    task = Task.objects.get(id=task_id)
+    data = {
+        'title': task.title,
+        'description': task.description,
+        'assigned_to': {'id': task.assigned_to.id, 'username': task.assigned_to.username},
+        'status': task.status,
+        'priority': task.priority,
+        'due_date': task.due_date,
+    }
+    return JsonResponse(data)
+
+def update_task_details(request):
+    if request.method == 'POST':
+        task_id = request.POST.get('task_id')
+        task = Task.objects.get(id=task_id)
+        task.title = request.POST.get('title')
+        task.description = request.POST.get('description')
+        task.assigned_to = User.objects.get(id=request.POST.get('assigned_to'))  # Assuming assigned_to is a User object
+        task.status = request.POST.get('status')
+        task.priority = request.POST.get('priority')
+        task.due_date = request.POST.get('due_date')
+        task.save()
+        return JsonResponse({'message': 'Task updated successfully'})
+    return JsonResponse({'message': 'Error updating task'})
+        
+@require_http_methods(['POST'])
+def delete_task(request):
+    task_id = request.POST.get('task_id')
+    # Delete the task with the given task_id
+    return JsonResponse({'message': 'Task deleted successfully!'})

@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="{% static 'css/theme.css' %}" />
 
     <title>Remote Work Productivity Tracker</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 
 <body class="bg-surface">
@@ -173,64 +175,144 @@
             </header>
             <!--  Header End -->
             <div class="col-span-2">
-                <div class="card h-full">
-                    <div class="card-body">
-                        <h4 class="text-gray-500 text-lg font-semibold mb-5">Manage Task</h4>
-                        <div class="relative overflow-x-auto">
-                            <table class="text-left w-full whitespace-nowrap text-sm text-gray-500">
-                                <thead>
-                                    <tr class="text-sm">
-                                        <th scope="col" class="p-4 font-semibold">Title</th>
-                                        <th scope="col" class="p-4 font-semibold">Description</th>
-                                        <th scope="col" class="p-4 font-semibold">Assigned To</th>
-                                        <th scope="col" class="p-4 font-semibold">Status</th>
-                                        <th scope="col" class="p-4 font-semibold">Priority</th>
-                                        <th scope="col" class="p-4 font-semibold">Due Date</th>
-                                        <th scope="col" class="p-4 font-semibold">Created At</th>
-                                        <th scope="col" class="p-4 font-semibold">Updated At</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for task in tasks %}
-                                    <tr>
-                                        <td class="p-4">
-                                            <h3 class="font-medium text-teal-500">{{ task.title }}</h3>
-                                        </td>
-                                        <td class="p-4">
-                                            <h3 class="font-medium text-teal-500">{{ task.description }}</h3>
-                                        </td>
-                                        <td class="p-4">
-                                            <h3 class="font-medium text-teal-500">{{ task.assigned_to }}</h3>
-                                        </td>
-                                        <td class="p-4">
-                                            <span class="inline-flex items-center py-2 px-4 rounded-3xl font-semibold bg-teal-400 text-teal-500">{{ task.status }}</span>
-                                        </td>
-                                        <td class="p-4">
-                                            <h3 class="font-medium text-teal-500">{{ task.priority }}</h3>
-                                        </td>
-                                        <td class="p-4">
-                                            <h3 class="font-medium text-teal-500">{{ task.due_date }}</h3>
-                                        </td>
-                                        <td class="p-4">
-                                            <h3 class="font-medium text-teal-500">{{ task.created_at }}</h3>
-                                        </td>
-                                        <td class="p-4">
-                                            <h3 class="font-medium text-teal-500">{{ task.updated_at }}</h3>
-                                        </td>
-                                    </tr>
-                                    {% empty %}
-                                    <tr>
-                                        <td colspan="9" class="p-4 text-center">
-                                            No tasks available
-                                        </td>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+				<div class="card h-full">
+					<div class="card-body">
+						<h4 class="text-gray-500 text-lg font-semibold mb-5">Manage Task</h4>
+						<div class="relative overflow-x-auto">
+							<table class="text-left w-full whitespace-nowrap text-sm text-gray-500">
+								<thead>
+									<tr class="text-sm">
+										<th scope="col" class="p-4 font-semibold">Title</th>
+										<th scope="col" class="p-4 font-semibold">Description</th>
+										<th scope="col" class="p-4 font-semibold">Assigned To</th>
+										<th scope="col" class="p-4 font-semibold">Status</th>
+										<th scope="col" class="p-4 font-semibold">Priority</th>
+										<th scope="col" class="p-4 font-semibold">Due Date</th>
+										<th scope="col" class="p-4 font-semibold">Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for task in tasks %}
+									<tr>
+										<td class="p-4">
+											<h3 class="font-medium text-teal-500">{{ task.title }}</h3>
+										</td>
+										<td class="p-4">
+											<h3 class="font-medium text-teal-500">{{ task.description }}</h3>
+										</td>
+										<td class="p-4">
+											<h3 class="font-medium text-teal-500">{{ task.assigned_to }}</h3>
+										</td>
+										<td class="p-4">
+											<span class="inline-flex items-center py-2 px-4 rounded-3xl font-semibold bg-teal-400 text-teal-500">{{ task.status }}</span>
+										</td>
+										<td class="p-4">
+											<h3 class="font-medium text-teal-500">{{ task.priority }}</h3>
+										</td>
+										<td class="p-4">
+											<h3 class="font-medium text-teal-500">{{ task.due_date }}</h3>
+										</td>
+										<td class="p-4">
+											<button class="btn btn-primary edit-btn" data-task-id="{{ task.id }}">Edit</button>
+											<button class="btn btn-danger delete-btn" data-task-id="{{ task.id }}">Delete</button>
+											<style>
+											  .btn {
+												padding: 10px 20px;
+												border: none;
+												font-size: 16px;
+												cursor: pointer;
+											  }
+											  .btn-primary {
+												background-color: #4CAF50; /* Green */
+												color: white;
+											  }
+											  .btn-danger {
+												background-color: #f44336; /* Red */
+												color: white;
+											  }
+											  .btn:hover {
+												opacity: 0.8;
+											  }
+											</style>
+										</td>
+									</tr>
+									{% empty %}
+									<tr>
+										<td colspan="9" class="p-4 text-center">
+											No tasks available
+										</td>
+									</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
         </main>
+		<script>
+			// script.js
+			$('.edit-btn').click(function() {
+				console.log('Edit button clicked!');
+				var taskId = $(this).data('task-id');
+				console.log('Task ID:', taskId);
+				$('#task-modal').modal('show');
+				$.ajax({
+					type: 'GET',
+					url: '/get_task_details/' + taskId + '/',
+					data: {
+						task_id: taskId
+					},
+					success: function(data) {
+						console.log(data);
+						$('#title').val(data.title);
+						$('#description').val(data.description);
+						$('#assigned_to').val(data.assigned_to.username);
+						$('#status').val(data.status);
+						$('#priority').val(data.priority);
+						$('#due_date').val(data.due_date);
+					}
+				});
+			});
+
+			// Update the task when the form is submitted
+			$('#updatetaskForm').submit(function(event) {
+				event.preventDefault();
+				var taskId = $(this).data('task-id');
+				var formData = $(this).serializeArray(); // Use serializeArray() instead of serialize()
+				formData.push({ name: 'task_id', value: taskId }); // Add task ID to form data
+				$.ajax({
+					type: 'POST',
+					url: '/update_task_details', // Remove the trailing slash
+					data: formData,
+					success: function(data) {
+						console.log(data);
+						if (data.message === 'Task updated successfully') {
+							$('#task-modal').modal('hide');
+							location.reload();
+						} else {
+							alert('Error updating task');
+						}
+					}
+				});
+			});
+			$(document).on('click', '.delete-button', function() {
+				var task_id = $(this).data('task-id');
+				$.ajax({
+					type: 'POST',
+					url: '{% url "delete_task" %}',
+					data: {
+						'task_id': task_id,
+						'csrfmiddlewaretoken': '{{ csrf_token }}'
+					},
+					success: function(data) {
+						console.log('Task deleted successfully!');
+					},
+					error: function(xhr, status, error) {
+						console.log('Error deleting task:', error);
+					}
+				});
+			});
+		</script>
     </body>
 </html>
